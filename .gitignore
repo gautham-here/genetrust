@@ -1,0 +1,160 @@
+# =========================
+# PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# =========================
+# VIRTUAL ENVIRONMENTS
+# =========================
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+# ENV FILES
+# =========================
+.env
+.env.local
+.env.production
+
+# =========================
+# FASTAPI
+# =========================
+*.log
+
+# =========================
+# PYTEST
+# =========================
+.pytest_cache/
+
+# =========================
+# JUPYTER
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# DATABASE
+# =========================
+*.db
+*.sqlite3
+
+# =========================
+# UPLOADS & STORAGE
+# =========================
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+backend/encrypted_storage/*
+!backend/encrypted_storage/.gitkeep
+
+# =========================
+# VECTOR DATABASES
+# =========================
+backend/vector_db/chroma/*
+!backend/vector_db/chroma/.gitkeep
+
+backend/vector_db/faiss/*
+!backend/vector_db/faiss/.gitkeep
+
+# =========================
+# LOCAL AI MODELS
+# =========================
+backend/local_models/llama/*
+backend/local_models/mistral/*
+backend/local_models/phi/*
+backend/local_models/embeddings/*
+
+# =========================
+# NODE MODULES
+# =========================
+node_modules/
+frontend/node_modules/
+
+# =========================
+# NEXTJS
+# =========================
+.next/
+out/
+dist/
+
+# =========================
+# TYPESCRIPT
+# =========================
+*.tsbuildinfo
+
+# =========================
+# LOGS
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# CACHE
+# =========================
+.cache/
+
+# =========================
+# TEMP FILES
+# =========================
+*.tmp
+*.temp
+
+# =========================
+# SECURITY
+# =========================
+*.pem
+*.key
+*.crt
+
+# =========================
+# GENERATED DATASETS
+# =========================
+datasets/
+
+# =========================
+# BUILD FILES
+# =========================
+build/
+coverage/
+
+# =========================
+# FRONTEND ENV
+# =========================
+frontend/.env.local
+frontend/.env
+
+# =========================
+# BACKEND ENV
+# =========================
+backend/.env
+
+# =========================
+# SAMPLE GENERATED FILES
+# =========================
+*.fasta
+*.fastq
+*.vcf
+
+# KEEP SAMPLE FILES
+!sample.fasta
+!backend/sample_data/sample.fasta
