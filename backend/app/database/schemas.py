@@ -1,12 +1,7 @@
 from datetime import datetime
 from typing import Optional, List
-
 from pydantic import BaseModel, EmailStr, Field
 
-
-# ---------------------------------------------------
-# AUTH SCHEMAS
-# ---------------------------------------------------
 
 class RegisterRequestSchema(BaseModel):
     email: EmailStr
@@ -25,20 +20,12 @@ class TokenResponseSchema(BaseModel):
     token_type: str = "bearer"
 
 
-# ---------------------------------------------------
-# GENOME UPLOAD SCHEMAS
-# ---------------------------------------------------
-
 class GenomeUploadResponseSchema(BaseModel):
     genome_id: str
     filename: str
     status: str
-    uploaded_at: datetime
+    uploaded_at: Optional[datetime] = None
 
-
-# ---------------------------------------------------
-# GENOMIC FEATURE SCHEMAS
-# ---------------------------------------------------
 
 class ParsedGenomeSchema(BaseModel):
     genome_label: str
@@ -54,52 +41,30 @@ class GenomicFeatureSchema(BaseModel):
     marker_density: float
 
 
-# ---------------------------------------------------
-# RISK ANALYSIS SCHEMAS
-# ---------------------------------------------------
-
 class RiskAnalysisSchema(BaseModel):
     risk_level: str
     risk_score: int
     exposure_probability: str
-
     findings: List[str]
     recommendations: List[str]
 
 
-# ---------------------------------------------------
-# THREAT ALERT SCHEMAS
-# ---------------------------------------------------
-
 class ThreatAlertSchema(BaseModel):
     id: str
-
     severity: str
     title: str
     description: str
+    created_at: Optional[datetime] = None
 
-    created_at: datetime
-
-
-# ---------------------------------------------------
-# AUDIT LOG SCHEMAS
-# ---------------------------------------------------
 
 class AuditLogSchema(BaseModel):
     id: str
-
     user_id: str
     action: str
-
     genome_id: Optional[str] = None
-
     status: str
-    timestamp: datetime
+    timestamp: Optional[datetime] = None
 
-
-# ---------------------------------------------------
-# ACCESS CONTROL SCHEMAS
-# ---------------------------------------------------
 
 class AccessRequestSchema(BaseModel):
     genome_id: str
@@ -112,10 +77,6 @@ class AccessApprovalSchema(BaseModel):
     approved: bool
 
 
-# ---------------------------------------------------
-# ORGANIZATION SCHEMAS
-# ---------------------------------------------------
-
 class OrganizationCreateSchema(BaseModel):
     name: str
     description: Optional[str] = None
@@ -125,13 +86,8 @@ class OrganizationResponseSchema(BaseModel):
     id: str
     name: str
     description: Optional[str] = None
+    created_at: Optional[datetime] = None
 
-    created_at: datetime
-
-
-# ---------------------------------------------------
-# STANDARD API RESPONSE
-# ---------------------------------------------------
 
 class APIMessageSchema(BaseModel):
     success: bool

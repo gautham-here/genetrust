@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { uploadGenomeForAi, type UploadGenomeResponse } from "@/services/ai";
 
 export default function UploadPage() {
 
@@ -20,37 +21,27 @@ export default function UploadPage() {
 
   const [uploading, setUploading] = useState(false);
 
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<UploadGenomeResponse | null>(null);
+
+  const [error, setError] = useState<string | null>(null);
 
   const handleUpload = async () => {
 
     if (!file) return;
 
     setUploading(true);
-
-    const formData = new FormData();
-
-    formData.append("file", file);
+    setError(null);
 
     try {
 
-      const response = await fetch(
-        "http://127.0.0.1:8000/upload-genome",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const data = await response.json();
-
-      console.log(data);
+      const data = await uploadGenomeForAi(file);
 
       setResult(data);
 
     } catch (error) {
 
       console.error(error);
+      setError(error instanceof Error ? error.message : "Upload failed.");
 
     } finally {
 
@@ -66,6 +57,8 @@ export default function UploadPage() {
   const analysis = result?.risk_analysis?.[0];
 
   const parsedGenome = result?.parsed_data?.[0];
+
+  const aiAnalysis = analysis?.ai_analysis;
 
   return (
 
@@ -177,6 +170,16 @@ export default function UploadPage() {
 
             </div>
 
+            {error && (
+
+              <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 px-6 py-4 text-red-300">
+
+                {error}
+
+              </div>
+
+            )}
+
             {/* Results */}
             {result && (
 
@@ -239,7 +242,46 @@ export default function UploadPage() {
 
                   </div>
 
+                  {/* AI Backend */}
+                  <div className="rounded-3xl border border-white/10 bg-black/40 p-6">
+
+                    <p className="text-sm text-gray-400">
+                      AI Model
+                    </p>
+
+                    <h2 className="mt-4 text-2xl font-bold text-cyan-400">
+
+                      {aiAnalysis?.ai_backend_used || "UNKNOWN"}
+
+                    </h2>
+
+                    {aiAnalysis?.ai_fallback_used && (
+
+                      <p className="mt-2 text-sm text-yellow-300">
+                        Gemini unavailable, Ollama fallback used
+                      </p>
+
+                    )}
+
+                  </div>
+
                 </div>
+
+                {aiAnalysis?.ai_summary && (
+
+                  <div className="rounded-3xl border border-cyan-500/20 bg-cyan-500/5 p-8">
+
+                    <h2 className="text-2xl font-bold">
+                      AI Summary
+                    </h2>
+
+                    <p className="mt-4 leading-relaxed text-gray-300">
+                      {aiAnalysis.ai_summary}
+                    </p>
+
+                  </div>
+
+                )}
 
                 {/* Parsed Data */}
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
@@ -317,7 +359,10 @@ export default function UploadPage() {
 
                     <div className="mt-6 space-y-4">
 
-                      {analysis?.findings?.map(
+                      {(aiAnalysis?.threat_indicators?.length
+                        ? aiAnalysis.threat_indicators
+                        : analysis?.findings || []
+                      ).map(
                         (
                           finding: string,
                           index: number
@@ -350,7 +395,10 @@ export default function UploadPage() {
 
                     <div className="mt-6 space-y-4">
 
-                      {analysis?.recommendations?.map(
+                      {(aiAnalysis?.security_recommendations?.length
+                        ? aiAnalysis.security_recommendations
+                        : analysis?.recommendations || []
+                      ).map(
                         (
                           rec: string,
                           index: number

@@ -1,148 +1,58 @@
 from typing import Dict, List
 from collections import Counter
 import math
+from app.utils.logger import setup_logger
+
+logger = setup_logger(__name__)
 
 
-# ---------------------------------------------------
-# ENTROPY CALCULATION
-# ---------------------------------------------------
-
-def calculate_entropy(
-    sequence: str
-) -> float:
-    """
-    Calculates Shannon entropy
-    for genomic sequence complexity.
-    """
-
+def calculate_entropy(sequence: str) -> float:
     if not sequence:
         return 0.0
-
     sequence = sequence.upper()
-
     counts = Counter(sequence)
-
-    probabilities = [
-        count / len(sequence)
-        for count in counts.values()
-    ]
-
-    entropy = -sum(
-        p * math.log2(p)
-        for p in probabilities
-    )
-
+    total = len(sequence)
+    entropy = -sum((c / total) * math.log2(c / total) for c in counts.values())
     return round(entropy, 4)
 
 
-# ---------------------------------------------------
-# MUTATION ESTIMATION
-# ---------------------------------------------------
-
-def estimate_mutation_count(
-    sequence: str
-) -> int:
-    """
-    Simplified mutation estimation.
-
-    Placeholder heuristic for MVP.
-    """
-
+def estimate_mutation_count(sequence: str) -> int:
     sequence = sequence.upper()
-
-    unusual_patterns = [
-        "AAA",
-        "TTT",
-        "GGGG",
-        "CCCC",
-    ]
-
-    mutation_score = 0
-
-    for pattern in unusual_patterns:
-        mutation_score += sequence.count(pattern)
-
-    return mutation_score
+    unusual = ["AAA", "TTT", "GGGG", "CCCC", "ATATAT", "GCGCGC"]
+    return sum(sequence.count(p) for p in unusual)
 
 
-# ---------------------------------------------------
-# MARKER DENSITY
-# ---------------------------------------------------
-
-def calculate_marker_density(
-    sequence: str
-) -> float:
-    """
-    Calculates density of genomic markers.
-
-    Simplified heuristic for MVP.
-    """
-
+def calculate_marker_density(sequence: str) -> float:
     if not sequence:
         return 0.0
-
     sequence = sequence.upper()
-
-    marker_count = (
-        sequence.count("CG")
-        + sequence.count("AT")
-    )
-
-    density = marker_count / len(sequence)
-
-    return round(density, 4)
+    marker_count = sequence.count("CG") + sequence.count("AT")
+    return round(marker_count / len(sequence), 4)
 
 
-# ---------------------------------------------------
-# FEATURE EXTRACTION PIPELINE
-# ---------------------------------------------------
+def calculate_at_content(sequence: str) -> float:
+    if not sequence:
+        return 0.0
+    sequence = sequence.upper()
+    a = sequence.count("A")
+    t = sequence.count("T")
+    return round(((a + t) / len(sequence)) * 100, 2)
 
-def extract_genomic_features(
-    parsed_records: List[Dict]
-) -> List[Dict]:
-    """
-    Extracts AI-safe genomic features.
 
-    IMPORTANT:
-    Raw genomic sequences should NEVER
-    leave backend infrastructure.
-    """
-
-    extracted_features = []
-
+def extract_genomic_features(parsed_records: List[Dict]) -> List[Dict]:
+    features = []
     for record in parsed_records:
-
-        preview = record.get(
-            "sequence_preview",
-            ""
-        )
-
-        features = {
-            "genome_label": record.get(
-                "genome_label"
-            ),
-
-            "sequence_length": record.get(
-                "sequence_length"
-            ),
-
-            "gc_content": record.get(
-                "gc_content"
-            ),
-
-            "entropy_score": calculate_entropy(
-                preview
-            ),
-
-            "mutation_count": estimate_mutation_count(
-                preview
-            ),
-
-            "marker_density": calculate_marker_density(
-                preview
-            ),
+        preview = record.get("sequence_preview", "")
+        f = {
+            "genome_label": record.get("genome_label"),
+            "sequence_length": record.get("sequence_length"),
+            "gc_content": record.get("gc_content"),
+            "at_content": calculate_at_content(preview),
+            "entropy_score": calculate_entropy(preview),
+            "mutation_count": estimate_mutation_count(preview),
+            "marker_density": calculate_marker_density(preview),
+            "sequence_preview": preview,
         }
-
-        extracted_features.append(features)
-
-    return extracted_features
+        features.append(f)
+        logger.debug(f"Extracted features for {f['genome_label']}: entropy={f['entropy_score']}, gc={f['gc_content']}")
+    return features

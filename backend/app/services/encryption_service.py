@@ -1,12 +1,9 @@
-from cryptography.fernet import Fernet
-import os
+from app.utils.encryption import encrypt_bytes, decrypt_bytes
 
-KEY = os.getenv("GENOME_KEY").encode()
 
-fernet = Fernet(KEY)
+def encrypt_file(data: bytes) -> bytes:
+    return encrypt_bytes(data)
 
-def encrypt_file(data):
-    return fernet.encrypt(data)
 
-def decrypt_file(data):
-    return fernet.decrypt(data)
+def decrypt_file(data: bytes) -> bytes:
+    return decrypt_bytes(data)

@@ -1,16 +1,18 @@
 from fastapi import APIRouter
+from app.security.rbac import ROLE_PERMISSIONS
+from app.utils.logger import setup_logger
 
-router = APIRouter(tags=["Permissions"])
+router = APIRouter()
+logger = setup_logger(__name__)
 
 
 @router.get("/permissions")
-def permissions():
-
+def get_permissions():
     return {
-        "roles": [
-            "admin",
-            "researcher",
-            "security_analyst",
-            "patient"
-        ]
+        "success": True,
+        "data": {
+            "roles": list(ROLE_PERMISSIONS.keys()),
+            "role_permissions": {role: list(perms) for role, perms in ROLE_PERMISSIONS.items()},
+        },
+        "message": "Permissions retrieved.",
     }

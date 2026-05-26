@@ -1,50 +1,28 @@
 import os
-
-from supabase import Client, create_client
 from dotenv import load_dotenv
-
-# ---------------------------------------------------
-# LOAD ENVIRONMENT VARIABLES
-# ---------------------------------------------------
+from app.utils.logger import setup_logger
 
 load_dotenv()
+logger = setup_logger(__name__)
 
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")
 
-# ---------------------------------------------------
-# VALIDATION
-# ---------------------------------------------------
+_supabase_client = None
 
-if not SUPABASE_URL:
-    raise ValueError(
-        "SUPABASE_URL environment variable is missing."
-    )
 
-if not SUPABASE_KEY:
-    raise ValueError(
-        "SUPABASE_KEY environment variable is missing."
-    )
-
-# ---------------------------------------------------
-# CREATE CLIENT
-# ---------------------------------------------------
-
-supabase: Client = create_client(
-    SUPABASE_URL,
-    SUPABASE_KEY
-)
-
-# ---------------------------------------------------
-# CONNECTION ACCESSOR
-# ---------------------------------------------------
-
-def get_supabase() -> Client:
-    """
-    Returns the initialized Supabase client.
-
-    This function should be used throughout the
-    application instead of creating new clients.
-    """
-
-    return supabase
+def get_supabase():
+    global _supabase_client
+    if _supabase_client is not None:
+        return _supabase_client
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        logger.warning("Supabase credentials not configured. Using in-memory storage.")
+        return None
+    try:
+        from supabase import create_client, Client
+        _supabase_client = create_client(SUPABASE_URL, SUPABASE_KEY)
+        logger.info("Supabase client initialized.")
+        return _supabase_client
+    except Exception as e:
+        logger.error(f"Supabase initialization failed: {e}")
+        return None

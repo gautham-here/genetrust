@@ -1,24 +1,19 @@
 from fastapi import APIRouter
+from app.services.threat_engine import get_all_threats
+from app.utils.logger import setup_logger
 
-router = APIRouter(tags=["Threats"])
-
-
-THREATS = [
-    {
-        "severity": "high",
-        "message": "Unauthorized genomic export attempt detected"
-    },
-    {
-        "severity": "medium",
-        "message": "Suspicious AI inference access"
-    }
-]
+router = APIRouter()
+logger = setup_logger(__name__)
 
 
 @router.get("/threats")
 def get_threats():
-
+    threats = get_all_threats()
     return {
-        "alerts": THREATS,
-        "count": len(THREATS)
+        "success": True,
+        "data": {
+            "alerts": threats,
+            "count": len(threats),
+        },
+        "message": "Threat intelligence retrieved.",
     }
