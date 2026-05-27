@@ -42,16 +42,19 @@ def calculate_at_content(sequence: str) -> float:
 def extract_genomic_features(parsed_records: List[Dict]) -> List[Dict]:
     features = []
     for record in parsed_records:
-        preview = record.get("sequence_preview", "")
+        sequence=record.get(
+            "full_sequence",
+            record.get("sequence_preview","")
+        )
         f = {
             "genome_label": record.get("genome_label"),
             "sequence_length": record.get("sequence_length"),
             "gc_content": record.get("gc_content"),
-            "at_content": calculate_at_content(preview),
-            "entropy_score": calculate_entropy(preview),
-            "mutation_count": estimate_mutation_count(preview),
-            "marker_density": calculate_marker_density(preview),
-            "sequence_preview": preview,
+            "at_content": calculate_at_content(sequence),
+            "entropy_score": calculate_entropy(sequence),
+            "mutation_count": estimate_mutation_count(sequence),
+            "marker_density": calculate_marker_density(sequence),
+            "sequence_preview": sequence,
         }
         features.append(f)
         logger.debug(f"Extracted features for {f['genome_label']}: entropy={f['entropy_score']}, gc={f['gc_content']}")

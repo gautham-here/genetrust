@@ -4,6 +4,8 @@ from typing import Optional, Dict, List
 from app.utils.logger import setup_logger
 from app.utils.timestamp import utcnow_iso
 from app.utils.encryption import encrypt_bytes
+from app.database.queries import create_genome_metadata
+from app.database.queries import get_all_genomes, get_genome_by_id
 
 logger = setup_logger(__name__)
 
@@ -57,16 +59,17 @@ def register_genome(
         "created_at": utcnow_iso(),
     }
     _genome_store.append(entry)
+    create_genome_metadata(entry)
     logger.info(f"Genome registered: {genome_id} risk={risk_level}({risk_score})")
     return entry
 
 
-def get_all_genomes() -> List[Dict]:
-    return list(reversed(_genome_store))
+# def get_all_genomes() -> List[Dict]:
+#     return list(reversed(_genome_store))
 
 
-def get_genome_by_id(genome_id: str) -> Optional[Dict]:
-    for g in _genome_store:
-        if g["genome_code"] == genome_id:
-            return g
-    return None
+# def get_genome_by_id(genome_id: str) -> Optional[Dict]:
+#     for g in _genome_store:
+#         if g["genome_code"] == genome_id:
+#             return g
+#     return None

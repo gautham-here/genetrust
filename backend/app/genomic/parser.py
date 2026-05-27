@@ -25,6 +25,7 @@ def parse_fasta(file_path: str) -> List[Dict]:
                 "sequence_length": len(sequence),
                 "gc_content": calculate_gc_content(sequence),
                 "sequence_preview": sequence[:100],
+                "full_sequence": sequence,
                 "full_sequence_length": len(sequence),
             })
     except Exception as e:
@@ -47,6 +48,7 @@ def parse_fasta_bytes(content: bytes, filename: str) -> List[Dict]:
                 "sequence_length": len(sequence),
                 "gc_content": calculate_gc_content(sequence),
                 "sequence_preview": sequence[:100],
+                "full_sequence": sequence,
                 "full_sequence_length": len(sequence),
             })
     except Exception as e:
@@ -65,6 +67,7 @@ def parse_fastq(file_path: str) -> List[Dict]:
                 "sequence_length": len(sequence),
                 "gc_content": calculate_gc_content(sequence),
                 "sequence_preview": sequence[:100],
+                "full_sequence": sequence,
                 "full_sequence_length": len(sequence),
             })
     except Exception as e:

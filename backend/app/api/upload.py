@@ -87,7 +87,12 @@ async def upload_genome(file: UploadFile = File(...)):
         encrypted_path=encrypted_path,
     )
 
-    evaluate_genome_threats(primary, genome_id)
+    evaluate_genome_threats(
+        primary,
+        mutation_reports[0],
+        feature_records[0],
+        genome_id
+    )
 
     log_event(
         action="Genome Upload & AI Analysis",
