@@ -1,0 +1,113 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Dell\\genetrust\\backend\\blockchain\\contracts\\AccessPolicy.sol": {
+      "lastModificationDate": 1779895270204,
+      "contentHash": "c19b525910b76a41de4a0fc10b35b21f",
+      "sourceName": "contracts/AccessPolicy.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AccessPolicy"
+      ]
+    },
+    "C:\\Users\\Dell\\genetrust\\backend\\blockchain\\contracts\\AuditLedger.sol": {
+      "lastModificationDate": 1779895290638,
+      "contentHash": "d47f58de641243285f95c9ab5bb9788c",
+      "sourceName": "contracts/AuditLedger.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AuditLedger"
+      ]
+    },
+    "C:\\Users\\Dell\\genetrust\\backend\\blockchain\\contracts\\GenomicRegistry.sol": {
+      "lastModificationDate": 1779895238043,
+      "contentHash": "8547417f787e39bda8c25f792b8b0196",
+      "sourceName": "contracts/GenomicRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "GenomicRegistry"
+      ]
+    }
+  }
+}

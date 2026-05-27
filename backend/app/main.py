@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import logging
 import time
-
 from app.utils.logger import setup_logger
 from app.api import upload, genomes, auth, ai, audit, threats, organizations, permissions
 
@@ -19,6 +18,10 @@ app = FastAPI(
     version=APP_VERSION,
     description=APP_DESCRIPTION,
 )
+
+
+from app.blockchain.routes import router as blockchain_router
+app.include_router(blockchain_router, prefix="/api/v1/chain")
 
 ALLOWED_ORIGINS = os.getenv(
     "ALLOWED_ORIGINS",
