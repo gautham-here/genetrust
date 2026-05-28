@@ -26,7 +26,7 @@ from typing import Optional
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent.parent / ".env")
 from web3 import Web3
-from web3.middleware import ExtraDataToPOAMiddleware  # needed for Polygon
+from web3.middleware import geth_poa_middleware  # needed for Polygon
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +76,7 @@ class ChainService:
 
         # Polygon (and most PoA chains) require this middleware
         if self.chain_id != 31337:
-            self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
+            self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
         if not self.w3.is_connected():
             raise ConnectionError(f"Cannot connect to Web3 provider at {provider_url}")

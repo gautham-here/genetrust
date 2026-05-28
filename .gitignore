@@ -161,4 +161,4 @@ backend/.env
 
 # KEEP SAMPLE FILES
 !sample.fasta
-!backend/sample_data/
+!backend/sample_data/*.fasta
