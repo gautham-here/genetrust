@@ -1,20 +1,14 @@
 <div align="center">
-</br>
-██████╗ ███████╗███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗███████╗████████╗
+<br/>
+ ██████╗ ███████╗███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗███████╗████████╗
 ██╔════╝ ██╔════╝████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝
 ██║  ███╗█████╗  ██╔██╗ ██║█████╗     ██║   ██████╔╝██║   ██║███████╗   ██║   
 ██║   ██║██╔══╝  ██║╚██╗██║██╔══╝     ██║   ██╔══██╗██║   ██║╚════██║   ██║   
 ╚██████╔╝███████╗██║ ╚████║███████╗   ██║   ██║  ██║╚██████╔╝███████║   ██║   
  ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝
-
-### **The Trust Layer for Biological Intelligence Systems**
-
-*AI-Native · Blockchain-Anchored · Privacy-Preserving · Enterprise-Grade*
-
-> **"Biology is becoming digital. Biological identity cannot be reset.**
-> **GeneTrust is the infrastructure that protects it."**
-
-</div>
+The Trust Layer for Biological Intelligence Systems
+AI-Native · Blockchain-Anchored · Privacy-Preserving · Enterprise-Grade
+<br/>
 
 ---
 
