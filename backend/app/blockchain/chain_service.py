@@ -26,7 +26,7 @@ from typing import Optional
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent.parent / ".env")
 from web3 import Web3
-#from web3.middleware import ExtraDataToPOAMiddleware  # needed for Polygon
+from web3.middleware import ExtraDataToPOAMiddleware  # needed for Polygon
 
 logger = logging.getLogger(__name__)
 

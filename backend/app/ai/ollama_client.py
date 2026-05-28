@@ -5,7 +5,7 @@ from app.utils.logger import setup_logger
 logger = setup_logger(__name__)
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
-OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_TIMEOUT", "120"))
+OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_TIMEOUT", "30"))
 
 
 def run_ollama(model: str, prompt: str) -> str:
