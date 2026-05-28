@@ -531,7 +531,7 @@ Phase 5 🔜  BioCryptographic Systems
 | | |
 |:---:|:---:|
 | **Gautham R** | **Shobhana S** |
-| Backend · AI · Blockchain | Frontend · UX · System Design |
+| Frontend · UX · System Design   | Backend · AI · Blockchain|
 | [LinkedIn](https://www.linkedin.com/in/gautham-r2005/) | [LinkedIn](https://www.linkedin.com/in/shobhana-shankar-b28026289/) |
 
 ---
