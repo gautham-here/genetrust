@@ -1,19 +1,24 @@
 <div align="center">
-<br/>
+
+```
  ██████╗ ███████╗███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗███████╗████████╗
 ██╔════╝ ██╔════╝████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝
 ██║  ███╗█████╗  ██╔██╗ ██║█████╗     ██║   ██████╔╝██║   ██║███████╗   ██║   
 ██║   ██║██╔══╝  ██║╚██╗██║██╔══╝     ██║   ██╔══██╗██║   ██║╚════██║   ██║   
 ╚██████╔╝███████╗██║ ╚████║███████╗   ██║   ██║  ██║╚██████╔╝███████║   ██║   
- ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝
-The Trust Layer for Biological Intelligence Systems
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝  
+```
+
+**The Trust Layer for Biological Intelligence Systems**
+
 AI-Native · Blockchain-Anchored · Privacy-Preserving · Enterprise-Grade
 
-"Biology is becoming digital. Biological identity cannot be reset.
-GeneTrust is the infrastructure that protects it."
+*"Biology is becoming digital. Biological identity cannot be reset.*
+*GeneTrust is the infrastructure that protects it."*
 
-<br/>
 </div>
+
+---
 
 ## The Problem We're Solving
 
@@ -57,42 +62,42 @@ This is not a demo. Every AI call hits a real model. Every audit event is anchor
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         REAL-WORLD LAB SCENARIO                      │
+│                       REAL-WORLD LAB SCENARIO                        │
 │   Patient Sample → DNA Extraction → NGS Sequencing → FASTA Output   │
-└─────────────────────────────┬───────────────────────────────────────┘
-                              │
-                              ▼
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        SECURE INGEST LAYER                           │
+│                         SECURE INGEST LAYER                          │
 │   AES-256 Encrypted Upload  →  BioPython Parser  →  SHA-256 Anon.   │
-└─────────────────────────────┬───────────────────────────────────────┘
-                              │
-                    ┌─────────┴─────────┐
-                    ▼                   ▼
-┌───────────────────────┐   ┌───────────────────────────────────────┐
-│   HEURISTIC RISK      │   │         GENAI PIPELINE                 │
-│   ENGINE              │   │                                        │
-│   • GC content        │   │   Gemini 1.5 Flash (primary)          │
-│   • Entropy score     │──▶│   Mistral / Llama / Phi (fallback)    │
-│   • Mutation signals  │   │   Anonymized features only            │
-│   • Marker density    │   │   No raw sequences ever sent to AI    │
-│   • CG islands        │   │                                        │
-└───────────────────────┘   └──────────────────┬────────────────────┘
-                                               │
-                                               ▼
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                     ┌─────────┴─────────┐
+                     ▼                   ▼
+┌────────────────────────┐   ┌──────────────────────────────────────┐
+│   HEURISTIC RISK       │   │           GENAI PIPELINE              │
+│   ENGINE               │   │                                       │
+│   • GC content         │   │   Gemini 1.5 Flash (primary)         │
+│   • Entropy score      │──▶│   Mistral / Llama / Phi (fallback)   │
+│   • Mutation signals   │   │   Anonymized features only           │
+│   • Marker density     │   │   No raw sequences ever sent to AI   │
+│   • CG islands         │   │                                       │
+└────────────────────────┘   └─────────────────┬────────────────────┘
+                                                │
+                                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     BLOCKCHAIN GOVERNANCE LAYER                      │
+│                      BLOCKCHAIN GOVERNANCE LAYER                     │
 │                                                                      │
 │   GenomeRegistry.sol    →   SHA-256 genome hash anchored on-chain   │
 │   AuditLog.sol          →   Every access event, tamper-proof        │
 │   GenomicAccessControl  →   RBAC + consent policy on smart contract │
 │                                                                      │
 │   Network: Polygon Mumbai Testnet (free, fast, EVM-compatible)      │
-└─────────────────────────────┬───────────────────────────────────────┘
-                              │
-                              ▼
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      GOVERNANCE & OUTPUT                             │
+│                        GOVERNANCE & OUTPUT                           │
 │   Clinician PDF Report  │  Research API  │  GDPR/HIPAA Export       │
 │   Real-time Threat Feed │  Webhook Alerts│  Compliance Dashboard    │
 └─────────────────────────────────────────────────────────────────────┘
@@ -135,10 +140,10 @@ Stores → SHA-256 hash of encrypted genome blob (never raw sequence)
          Risk level, score, GC content, sequence length
          Registrant wallet address + block timestamp
          Per-genome consent flags: research | clinical | third-party
-         
+
 Access control → grantAccess() / revokeAccess() per address
                  expiry timestamps on every grant
-                 
+
 Events → GenomeRegistered, AccessGranted, AccessRevoked, ConsentUpdated
 ```
 
@@ -147,7 +152,7 @@ Events → GenomeRegistered, AccessGranted, AccessRevoked, ConsentUpdated
 Stores → Every access event: upload, AI analysis, export, login
          Actor wallet, action string, severity, status
          previousHash linkage → cryptographic chain of custody
-         
+
 Verification → verifyChainIntegrity() checks every previousHash link
                Returns false if any entry has been tampered with
 
@@ -158,12 +163,12 @@ Events → AuditEntryCreated (indexed by genomeHash + actor)
 ```
 Roles → ADMIN | RESEARCHER | CLINICIAN | LAB_OPERATOR | PATIENT
 
-Per-genome policy →  requiresConsent
-                     requiresMultiPartyApproval
-                     allowsExternalSharing
-                     allowsAIAnalysis
-                     dataClassification: public | restricted | confidential | top_secret
-                     
+Per-genome policy → requiresConsent
+                    requiresMultiPartyApproval
+                    allowsExternalSharing
+                    allowsAIAnalysis
+                    dataClassification: public | restricted | confidential | top_secret
+
 Events → RoleGranted, RoleRevoked, AccessPolicySet, AccessRequestLogged
 ```
 
@@ -187,16 +192,16 @@ BioPython Parser ──► Feature Extractor ──► Anonymizer
                            CG island density
                                                │
                                                ▼
-                                    ┌──────────────────┐
-                                    │  Gemini 1.5 Flash │  ◄── Primary
-                                    │  (Cloud, FREE)    │
-                                    └────────┬─────────┘
+                                  ┌────────────────────┐
+                                  │  Gemini 1.5 Flash   │  ◄── Primary
+                                  │  (Cloud, FREE)      │
+                                  └──────────┬──────────┘
                                              │ fails?
                                              ▼
-                                    ┌──────────────────┐
-                                    │  Ollama Local     │  ◄── Fallback
-                                    │  Mistral / Llama  │       (offline)
-                                    └──────────────────┘
+                                  ┌────────────────────┐
+                                  │   Ollama Local      │  ◄── Fallback
+                                  │  Mistral / Llama    │       (offline)
+                                  └──────────┬──────────┘
                                              │
                                              ▼
                               Structured AI Analysis Output:
@@ -215,6 +220,7 @@ BioPython Parser ──► Feature Extractor ──► Anonymizer
 ## Feature Breakdown
 
 ### 🧬 Genomic Processing Engine
+
 | Feature | Description |
 |---|---|
 | FASTA / FASTQ Parser | BioPython-powered, handles multi-record files |
@@ -226,6 +232,7 @@ BioPython Parser ──► Feature Extractor ──► Anonymizer
 | Marker Density | Re-identification exposure estimation |
 
 ### 🤖 AI Risk Analysis
+
 | Feature | Description |
 |---|---|
 | Heuristic Scorer | Weighted multi-feature risk score (0–100) |
@@ -235,6 +242,7 @@ BioPython Parser ──► Feature Extractor ──► Anonymizer
 | Structured Output | Risk level, threats, privacy concerns, compliance flags |
 
 ### ⛓️ Blockchain Layer
+
 | Feature | Description |
 |---|---|
 | GenomeRegistry | On-chain genome hash + consent registry |
@@ -245,6 +253,7 @@ BioPython Parser ──► Feature Extractor ──► Anonymizer
 | Explorer Links | Every tx links to Polygonscan |
 
 ### 🔐 Security
+
 | Feature | Description |
 |---|---|
 | AES-256 Encryption | Every genome encrypted at rest (Fernet/PBKDF2) |
@@ -435,7 +444,7 @@ AUDIT_LOG_CONTRACT_ADDRESS=0x...
 ```bash
 # AI
 AI_BACKEND=gemini                    # gemini | ollama | local
-GEMINI_API_KEY=your_key_here        # Free at aistudio.google.com
+GEMINI_API_KEY=your_key_here         # Free at aistudio.google.com
 GEMINI_MODEL=gemini-1.5-flash
 
 # Blockchain
@@ -459,7 +468,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   PRIVACY GUARANTEE                      │
+│                    PRIVACY GUARANTEE                     │
 │                                                          │
 │  Raw genomic sequence                                    │
 │       │                                                  │
@@ -525,11 +534,15 @@ Phase 5 🔜  BioCryptographic Systems
 
 ## Team Double Trouble
 
+<div align="center">
+
 | | |
 |:---:|:---:|
 | **Gautham R** | **Shobhana S** |
-| Frontend · UX · System Design   | Backend · AI · Blockchain|
+| Frontend · UX · System Design | Backend · AI · Blockchain |
 | [LinkedIn](https://www.linkedin.com/in/gautham-r2005/) | [LinkedIn](https://www.linkedin.com/in/shobhana-shankar-b28026289/) |
+
+</div>
 
 ---
 
