@@ -8,9 +8,12 @@
  ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝
 The Trust Layer for Biological Intelligence Systems
 AI-Native · Blockchain-Anchored · Privacy-Preserving · Enterprise-Grade
-<br/>
 
----
+"Biology is becoming digital. Biological identity cannot be reset.
+GeneTrust is the infrastructure that protects it."
+
+<br/>
+</div>
 
 ## The Problem We're Solving
 
